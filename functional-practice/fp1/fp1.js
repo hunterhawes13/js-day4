@@ -20,7 +20,6 @@ console.assert(total === 24)
 // using forEach() from above, write your own reduce()
 // that takes an array and a function
 // ----------------------------
-///////////////////////////////////////////////////////////////////////////////////////////////////
 function reduce(array, callback){
   var accumulator;
   
@@ -52,19 +51,19 @@ console.assert(
 function map(array, callback){
     var mapArray = [];
     
-    forEach (array, function (array, i) {
-        mapArray[i]= callback(array);
+    forEach(array, function (num, i) {
+        mapArray[i]= callback(num);
     });
     return mapArray;  
 }
 
 // tests
 // ---
-var squares = map([1, 2, 3, 4], function(v){ return v*v })
-console.assert(squares[0] === 1)
-console.assert(squares[1] === 4)
-console.assert(squares[2] === 9)
-console.assert(squares[3] === 16)
+var squares = map([1, 2, 3, 4], function(v){ return v*v; });
+console.assert(squares[0] === 1);
+console.assert(squares[1] === 4);
+console.assert(squares[2] === 9);
+console.assert(squares[3] === 16);
 
 // ----------------------------
 // using reduce() from above, write your own filter()
@@ -73,10 +72,10 @@ console.assert(squares[3] === 16)
 
 function filter(array, callback){
     var filterArray = [];
-    reduce (array, function (v, i){
-    var index = callback(i);
-        if (index) {
-            filterArray.push(i);
+    reduce (array, function (a, b){
+    var value = callback(b);
+        if (value) {
+            filterArray.push(b);
         }
     });
         return filterArray;
@@ -131,6 +130,7 @@ names.sort(function(a, b) {
 console.assert(names[0].name === "Brian");
 console.assert(names[1].name === "Jesse");
 console.assert(names[2].name === "Matt");
+console.log(names);
 
 // ----------------------------
 // Using Array.map(), Array.filter(), and Array.sort() on the
@@ -148,17 +148,22 @@ var customers = [
 ]
 
 var results = customers
-    .filter(function(){
-        // YOUR CODE HERE
+    .filter(function(customer){
+        return customer.first.toLowerCase().indexOf('j') === 0;
     })
-    .map(function(){
-        // YOUR CODE HERE
+    .map(function(customer){
+            return { fullname: customer.first + ' ' + customer.last};
     })
-    .sort(function(){
-        // YOUR CODE HERE
-    })
+    .sort(function(a, b){
+        if (a.fullname < b.fullname){
+            return -1;
+        } else if (a.fullname > b.fullname) {
+            return 1;
+        }
+        return 0;
+    });
 
 // tests
 // ---
-console.assert(results[0].fullname === "Jack White")
-console.assert(results[2].fullname === "John Smith"
+console.assert(results[0].fullname === "Jack White");
+console.assert(results[2].fullname === "John Smith");

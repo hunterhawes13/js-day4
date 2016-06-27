@@ -245,7 +245,6 @@ var wordsWithoutO = codenames.filter(
     }
   }
 
-
 );
 
 // > ['Tiger', 'Big Al', 'Tiki', 'Prancy']
