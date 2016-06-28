@@ -7,7 +7,10 @@
 // values associated with property names.
 // -----------
 function pluck(list, propertyName) {
-    // YOUR CODE HERE
+    var result = list.map(function(item) {
+        return item[propertyName];
+    });
+    return result;
 }
 
 // tests
@@ -23,7 +26,14 @@ console.assert(pluck(stooges, 'age')[2] === 60)
 // otherwise it is.
 // -----------
 function reject(list, predicate) {
-    // YOUR CODE HERE
+  var rejected = [];
+  list.reduce(function (a, b) {
+    var value = predicate(b);
+    if (!value) {
+      rejected.push(b);
+    }
+  });
+  return rejected;
 }
 
 // tests
@@ -40,7 +50,15 @@ console.assert(odds[4] === 9)
 // otherwise returns undefined.
 // -----------
 function find(list, predicate) {
-    // YOUR CODE HERE
+    for (i=0; i < list.length; i++) {
+      var item = list[i];
+      var found = predicate(item) ;
+      if (found) {
+        return list[i];
+      } else {
+      return undefined;
+        }
+    }
 }
 
 // tests
@@ -58,8 +76,21 @@ console.assert(JS.name === "Matt")
 // in the properties object.
 // -----------
 function where(list, properties) {
-    // YOUR CODE HERE
+    var results = [];
+    for (var i=0; i<list.length; i++) {
+      var result = true;
+      for (var prop in properties) {
+        if(list[i][prop] !== properties[prop]) {
+          result = false;
+        }
+      }
+      if(result) {
+        results.push(list[i]);
+      }
+    }
+    return results;
 }
+
 
 // tests
 // ---
