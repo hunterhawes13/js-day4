@@ -74,7 +74,10 @@ console.assert(JS.name === "Matt")
 // -----------
 // Write a function where() that filters for all the values
 // in the properties object.
-// -----------
+
+
+//--------------jims code:-------------------
+// ------------------------------------------
 function where(list, properties) {
     var results = [];
     for (var i=0; i<list.length; i++) {
